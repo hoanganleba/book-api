@@ -18,7 +18,11 @@ export class AuthService {
     });
   }
 
-  register(registerDto: RegisterDto) {
+  async findExistUser(username: any) {
+    return this.userModel.find({ username: username });
+  }
+
+  async register(registerDto: RegisterDto) {
     const newRegisterUser = new this.userModel(registerDto);
     return newRegisterUser.save();
   }

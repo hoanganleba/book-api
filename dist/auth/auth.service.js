@@ -25,7 +25,10 @@ let AuthService = class AuthService {
             password: loginDto.password,
         });
     }
-    register(registerDto) {
+    async findExistUser(username) {
+        return this.userModel.find({ username: username });
+    }
+    async register(registerDto) {
         const newRegisterUser = new this.userModel(registerDto);
         return newRegisterUser.save();
     }

@@ -8,7 +8,7 @@ import { RegisterDto } from './dto/register.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('/login')
+  @Post('login')
   async login(@Body() loginDto: LoginDto, @Res() response: Response) {
     const user = await this.authService.login(loginDto);
 
@@ -22,7 +22,16 @@ export class AuthController {
   }
 
   @Post('register')
-  register(@Body() registerDto: RegisterDto) {
-    return this.authService.register(registerDto);
+  async register(@Body() registerDto: RegisterDto, @Res() response: Response) {
+    const result = await this.authService.findExistUser(registerDto.username);
+
+    if (result.length !== 0) {
+      response
+        .status(HttpStatus.FORBIDDEN)
+        .send('User already exists. Please enter again.');
+    } else {
+      this.authService.register(registerDto);
+      response.status(HttpStatus.CREATED).send('Register Successfully');
+    }
   }
 }

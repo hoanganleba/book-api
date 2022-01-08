@@ -10,6 +10,9 @@ export declare class AuthService {
     })[], User & {
         _id: any;
     }, {}, User>;
+    findExistUser(username: any): Promise<(User & {
+        _id: any;
+    })[]>;
     register(registerDto: RegisterDto): Promise<User & {
         _id: any;
     }>;

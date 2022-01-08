@@ -33,12 +33,21 @@ let AuthController = class AuthController {
                 .send('Invalid username or password');
         }
     }
-    register(registerDto) {
-        return this.authService.register(registerDto);
+    async register(registerDto, response) {
+        const result = await this.authService.findExistUser(registerDto.username);
+        if (result.length !== 0) {
+            response
+                .status(common_1.HttpStatus.FORBIDDEN)
+                .send('User already exists. Please enter again.');
+        }
+        else {
+            this.authService.register(registerDto);
+            response.status(common_1.HttpStatus.CREATED).send('Register Successfully');
+        }
     }
 };
 __decorate([
-    (0, common_1.Post)('/login'),
+    (0, common_1.Post)('login'),
     openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),
@@ -48,11 +57,12 @@ __decorate([
 ], AuthController.prototype, "login", null);
 __decorate([
     (0, common_1.Post)('register'),
-    openapi.ApiResponse({ status: 201, type: Object }),
+    openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [register_dto_1.RegisterDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [register_dto_1.RegisterDto, Object]),
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "register", null);
 AuthController = __decorate([
     (0, common_1.Controller)('auth'),

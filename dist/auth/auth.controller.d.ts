@@ -6,7 +6,5 @@ export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
     login(loginDto: LoginDto, response: Response): Promise<void>;
-    register(registerDto: RegisterDto): Promise<import("../user/interface/user.interface").User & {
-        _id: any;
-    }>;
+    register(registerDto: RegisterDto, response: Response): Promise<void>;
 }
