@@ -17,7 +17,7 @@ export class AuthController {
     } else {
       response
         .status(HttpStatus.UNAUTHORIZED)
-        .send('Invalid username or password');
+        .send({ message: 'Invalid username or password' });
     }
   }
 
@@ -28,7 +28,7 @@ export class AuthController {
     if (result.length !== 0) {
       response
         .status(HttpStatus.UNAUTHORIZED)
-        .send('User already exists. Please enter again.');
+        .send({ message: 'User already exists. Please enter again.' });
     } else {
       this.authService.register(registerDto);
       response.status(HttpStatus.CREATED).send('Register Successfully');
