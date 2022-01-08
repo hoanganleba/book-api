@@ -30,7 +30,7 @@ let AuthController = class AuthController {
         else {
             response
                 .status(common_1.HttpStatus.UNAUTHORIZED)
-                .send('Invalid username or password');
+                .send({ message: 'Invalid username or password' });
         }
     }
     async register(registerDto, response) {
@@ -38,7 +38,7 @@ let AuthController = class AuthController {
         if (result.length !== 0) {
             response
                 .status(common_1.HttpStatus.UNAUTHORIZED)
-                .send('User already exists. Please enter again.');
+                .send({ message: 'User already exists. Please enter again.' });
         }
         else {
             this.authService.register(registerDto);
