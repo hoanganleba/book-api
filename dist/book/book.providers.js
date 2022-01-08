@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.booksProviders = void 0;
+exports.bookProviders = void 0;
 const book_schema_1 = require("./schema/book.schema");
-exports.booksProviders = [
+exports.bookProviders = [
     {
         provide: 'BOOK_MODEL',
         useFactory: (connection) => connection.model('Book', book_schema_1.BookSchema),

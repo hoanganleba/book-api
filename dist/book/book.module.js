@@ -18,7 +18,7 @@ BookModule = __decorate([
     (0, common_1.Module)({
         imports: [database_module_1.DatabaseModule],
         controllers: [book_controller_1.BookController],
-        providers: [book_service_1.BookService, ...book_providers_1.booksProviders],
+        providers: [book_service_1.BookService, ...book_providers_1.bookProviders],
     })
 ], BookModule);
 exports.BookModule = BookModule;

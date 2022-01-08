@@ -1,5 +1,5 @@
 import { Connection } from 'mongoose';
-export declare const booksProviders: {
+export declare const bookProviders: {
     provide: string;
     useFactory: (connection: Connection) => import("mongoose").Model<unknown, {}, {}, {}>;
     inject: string[];
