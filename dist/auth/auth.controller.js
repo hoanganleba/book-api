@@ -25,24 +25,26 @@ let AuthController = class AuthController {
     async login(loginDto, response) {
         const user = await this.authService.login(loginDto);
         if (user.length !== 0) {
-            response.status(common_1.HttpStatus.OK).send('Login Success');
+            response.send({ status: 'Success', message: 'Login Success' });
         }
         else {
-            response
-                .status(common_1.HttpStatus.UNAUTHORIZED)
-                .send({ message: 'Invalid username or password' });
+            response.send({
+                status: 'Unauthorized',
+                message: 'Invalid username or password',
+            });
         }
     }
     async register(registerDto, response) {
         const result = await this.authService.findExistUser(registerDto.username);
         if (result.length !== 0) {
-            response
-                .status(common_1.HttpStatus.UNAUTHORIZED)
-                .send({ message: 'User already exists. Please enter again.' });
+            response.send({
+                status: 'Failed',
+                message: 'User already exists. Please enter again.',
+            });
         }
         else {
             this.authService.register(registerDto);
-            response.status(common_1.HttpStatus.CREATED).send('Register Successfully');
+            response.send({ status: 'Success', message: 'Register Successfully' });
         }
     }
 };

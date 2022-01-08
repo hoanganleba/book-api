@@ -13,11 +13,12 @@ export class AuthController {
     const user = await this.authService.login(loginDto);
 
     if (user.length !== 0) {
-      response.status(HttpStatus.OK).send('Login Success');
+      response.send({ status: 'Success', message: 'Login Success' });
     } else {
-      response
-        .status(HttpStatus.UNAUTHORIZED)
-        .send({ message: 'Invalid username or password' });
+      response.send({
+        status: 'Unauthorized',
+        message: 'Invalid username or password',
+      });
     }
   }
 
@@ -26,12 +27,13 @@ export class AuthController {
     const result = await this.authService.findExistUser(registerDto.username);
 
     if (result.length !== 0) {
-      response
-        .status(HttpStatus.UNAUTHORIZED)
-        .send({ message: 'User already exists. Please enter again.' });
+      response.send({
+        status: 'Failed',
+        message: 'User already exists. Please enter again.',
+      });
     } else {
       this.authService.register(registerDto);
-      response.status(HttpStatus.CREATED).send('Register Successfully');
+      response.send({ status: 'Success', message: 'Register Successfully' });
     }
   }
 }
