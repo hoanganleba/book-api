@@ -29,7 +29,7 @@ let AuthController = class AuthController {
         }
         else {
             response
-                .status(common_1.HttpStatus.FORBIDDEN)
+                .status(common_1.HttpStatus.UNAUTHORIZED)
                 .send('Invalid username or password');
         }
     }
@@ -37,7 +37,7 @@ let AuthController = class AuthController {
         const result = await this.authService.findExistUser(registerDto.username);
         if (result.length !== 0) {
             response
-                .status(common_1.HttpStatus.FORBIDDEN)
+                .status(common_1.HttpStatus.UNAUTHORIZED)
                 .send('User already exists. Please enter again.');
         }
         else {
