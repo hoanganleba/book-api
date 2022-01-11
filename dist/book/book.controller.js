@@ -90,7 +90,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BookController.prototype, "remove", null);
 BookController = __decorate([
-    (0, common_1.Controller)('book'),
+    (0, common_1.Controller)('books'),
     __metadata("design:paramtypes", [book_service_1.BookService])
 ], BookController);
 exports.BookController = BookController;
