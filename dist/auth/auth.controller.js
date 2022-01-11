@@ -24,8 +24,12 @@ let AuthController = class AuthController {
     }
     async login(loginDto, response) {
         const user = await this.authService.login(loginDto);
-        if (user.length !== 0) {
-            response.send({ status: 'Success', message: 'Login Success' });
+        if (user) {
+            response.send({
+                status: 'Success',
+                message: 'Login Success',
+                user: user,
+            });
         }
         else {
             response.send({

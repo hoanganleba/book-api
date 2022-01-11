@@ -20,7 +20,7 @@ let AuthService = class AuthService {
         this.userModel = userModel;
     }
     login(loginDto) {
-        return this.userModel.find({
+        return this.userModel.findOne({
             username: loginDto.username,
             password: loginDto.password,
         });

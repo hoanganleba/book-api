@@ -5,9 +5,9 @@ import { RegisterDto } from './dto/register.dto';
 export declare class AuthService {
     private readonly userModel;
     constructor(userModel: Model<User>);
-    login(loginDto: LoginDto): import("mongoose").Query<(User & {
+    login(loginDto: LoginDto): import("mongoose").Query<User & {
         _id: any;
-    })[], User & {
+    }, User & {
         _id: any;
     }, {}, User>;
     findExistUser(username: any): Promise<(User & {

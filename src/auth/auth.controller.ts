@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
+import { Body, Controller, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
@@ -12,8 +12,12 @@ export class AuthController {
   async login(@Body() loginDto: LoginDto, @Res() response: Response) {
     const user = await this.authService.login(loginDto);
 
-    if (user.length !== 0) {
-      response.send({ status: 'Success', message: 'Login Success' });
+    if (user) {
+      response.send({
+        status: 'Success',
+        message: 'Login Success',
+        user: user,
+      });
     } else {
       response.send({
         status: 'Unauthorized',

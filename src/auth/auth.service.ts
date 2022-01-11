@@ -12,7 +12,7 @@ export class AuthService {
   ) {}
 
   login(loginDto: LoginDto) {
-    return this.userModel.find({
+    return this.userModel.findOne({
       username: loginDto.username,
       password: loginDto.password,
     });
