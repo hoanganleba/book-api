@@ -20,12 +20,6 @@ export class BookService {
     return await this.bookModel.find().exec();
   }
 
-  async search(query: string): Promise<Book[]> {
-    return await this.bookModel.find({
-      $text: { $search: query },
-    });
-  }
-
   async findOne(id: string): Promise<Book> {
     return await this.bookModel.findById(id).exec();
   }

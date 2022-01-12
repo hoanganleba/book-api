@@ -29,12 +29,15 @@ let BookController = class BookController {
     async findAll(category) {
         if (category) {
             const result = await this.bookService.findAll();
-            return result.filter((item) => item.category === category);
+            return result.filter((item) => item.category.includes(category));
         }
         return this.bookService.findAll();
     }
-    search(title) {
-        return this.bookService.search(title);
+    async search(title) {
+        const result = await this.bookService.findAll();
+        return result.filter((item) => {
+            return item.title.toLowerCase().indexOf(title.toLowerCase()) > -1;
+        });
     }
     findOne(id) {
         return this.bookService.findOne(id);
@@ -73,7 +76,7 @@ __decorate([
     __param(0, (0, common_1.Query)('title')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], BookController.prototype, "search", null);
 __decorate([
     (0, common_1.Get)(':id'),

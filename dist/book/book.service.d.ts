@@ -9,7 +9,6 @@ export declare class BookService {
         _id: any;
     }>;
     findAll(): Promise<Book[]>;
-    search(query: string): Promise<Book[]>;
     findOne(id: string): Promise<Book>;
     update(id: string, updateBookDto: UpdateBookDto): Promise<Book & {
         _id: any;

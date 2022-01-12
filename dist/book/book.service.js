@@ -26,11 +26,6 @@ let BookService = class BookService {
     async findAll() {
         return await this.bookModel.find().exec();
     }
-    async search(query) {
-        return await this.bookModel.find({
-            $text: { $search: query },
-        });
-    }
     async findOne(id) {
         return await this.bookModel.findById(id).exec();
     }

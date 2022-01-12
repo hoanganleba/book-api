@@ -31,14 +31,17 @@ export class BookController {
   async findAll(@Query('category') category: string) {
     if (category) {
       const result = await this.bookService.findAll();
-      return result.filter((item) => item.category === category);
+      return result.filter((item) => item.category.includes(category));
     }
     return this.bookService.findAll();
   }
 
   @Get('search')
-  search(@Query('title') title: string) {
-    return this.bookService.search(title);
+  async search(@Query('title') title: string) {
+    const result = await this.bookService.findAll();
+    return result.filter((item) => {
+      return item.title.toLowerCase().indexOf(title.toLowerCase()) > -1;
+    });
   }
 
   @Get(':id')
