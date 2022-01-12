@@ -7,7 +7,7 @@ export declare class BookController {
     create(createBookDto: CreateBookDto): Promise<import("./interface/book.interface").Book & {
         _id: any;
     }>;
-    findAll(): Promise<import("./interface/book.interface").Book[]>;
+    findAll(category: string): Promise<import("./interface/book.interface").Book[]>;
     search(title: string): Promise<import("./interface/book.interface").Book[]>;
     findOne(id: string): Promise<import("./interface/book.interface").Book>;
     update(id: string, updateBookDto: UpdateBookDto): Promise<import("./interface/book.interface").Book & {

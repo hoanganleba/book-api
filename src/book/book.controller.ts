@@ -8,6 +8,7 @@ import {
   Delete,
   Query,
 } from '@nestjs/common';
+import { ApiQuery } from '@nestjs/swagger';
 import { BookService } from './book.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
@@ -21,8 +22,17 @@ export class BookController {
     return this.bookService.create(createBookDto);
   }
 
+  @ApiQuery({
+    name: 'category',
+    type: String,
+    required: false,
+  })
   @Get()
-  findAll() {
+  async findAll(@Query('category') category: string) {
+    if (category) {
+      const result = await this.bookService.findAll();
+      return result.filter((item) => item.category === category);
+    }
     return this.bookService.findAll();
   }
 

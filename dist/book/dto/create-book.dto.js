@@ -14,13 +14,17 @@ const openapi = require("@nestjs/swagger");
 const swagger_1 = require("@nestjs/swagger");
 class CreateBookDto {
     static _OPENAPI_METADATA_FACTORY() {
-        return { title: { required: true, type: () => String }, image: { required: true, type: () => String }, author: { required: true, type: () => String }, price: { required: true, type: () => String }, created_at: { required: true, type: () => Date } };
+        return { title: { required: true, type: () => String }, category: { required: true, type: () => String }, image: { required: true, type: () => String }, author: { required: true, type: () => String }, price: { required: true, type: () => String } };
     }
 }
 __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], CreateBookDto.prototype, "title", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], CreateBookDto.prototype, "category", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)

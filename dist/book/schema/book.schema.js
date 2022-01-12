@@ -4,6 +4,7 @@ exports.BookSchema = void 0;
 const mongoose = require("mongoose");
 exports.BookSchema = new mongoose.Schema({
     title: { type: String, index: { text: true } },
+    category: String,
     image: String,
     author: String,
     price: String,

@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookController = void 0;
 const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const book_service_1 = require("./book.service");
 const create_book_dto_1 = require("./dto/create-book.dto");
 const update_book_dto_1 = require("./dto/update-book.dto");
@@ -25,7 +26,11 @@ let BookController = class BookController {
     create(createBookDto) {
         return this.bookService.create(createBookDto);
     }
-    findAll() {
+    async findAll(category) {
+        if (category) {
+            const result = await this.bookService.findAll();
+            return result.filter((item) => item.category === category);
+        }
         return this.bookService.findAll();
     }
     search(title) {
@@ -50,11 +55,17 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BookController.prototype, "create", null);
 __decorate([
+    (0, swagger_1.ApiQuery)({
+        name: 'category',
+        type: String,
+        required: false,
+    }),
     (0, common_1.Get)(),
     openapi.ApiResponse({ status: 200, type: [Object] }),
+    __param(0, (0, common_1.Query)('category')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], BookController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)('search'),
