@@ -5,5 +5,6 @@ export interface Book extends Document {
     readonly image: string;
     readonly author: string;
     readonly price: string;
+    readonly description: string;
     readonly created_at: Date;
 }

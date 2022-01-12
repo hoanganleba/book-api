@@ -14,7 +14,7 @@ const openapi = require("@nestjs/swagger");
 const swagger_1 = require("@nestjs/swagger");
 class CreateBookDto {
     static _OPENAPI_METADATA_FACTORY() {
-        return { title: { required: true, type: () => String }, category: { required: true, type: () => String }, image: { required: true, type: () => String }, author: { required: true, type: () => String }, price: { required: true, type: () => String } };
+        return { title: { required: true, type: () => String }, category: { required: true, type: () => String }, image: { required: true, type: () => String }, author: { required: true, type: () => String }, price: { required: true, type: () => String }, description: { required: true, type: () => String } };
     }
 }
 __decorate([
@@ -37,5 +37,9 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], CreateBookDto.prototype, "price", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], CreateBookDto.prototype, "description", void 0);
 exports.CreateBookDto = CreateBookDto;
 //# sourceMappingURL=create-book.dto.js.map

@@ -4,4 +4,5 @@ export declare class CreateBookDto {
     readonly image: string;
     readonly author: string;
     readonly price: string;
+    readonly description: string;
 }

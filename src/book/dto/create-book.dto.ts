@@ -11,4 +11,6 @@ export class CreateBookDto {
   readonly author: string;
   @ApiProperty()
   readonly price: string;
+  @ApiProperty()
+  readonly description: string;
 }

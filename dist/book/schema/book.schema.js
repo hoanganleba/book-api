@@ -8,6 +8,7 @@ exports.BookSchema = new mongoose.Schema({
     image: String,
     author: String,
     price: String,
+    description: String,
     created_at: { type: Date, default: Date.now },
 });
 //# sourceMappingURL=book.schema.js.map
