@@ -33,8 +33,12 @@ let BookController = class BookController {
         }
         return this.bookService.findAll();
     }
-    async search(title) {
+    async search(title, category) {
         const result = await this.bookService.findAll();
+        if (category) {
+            return result.filter((item) => item.category.includes(category) &&
+                item.title.toLowerCase().indexOf(title.toLowerCase()) > -1);
+        }
         return result.filter((item) => {
             return item.title.toLowerCase().indexOf(title.toLowerCase()) > -1;
         });
@@ -71,11 +75,17 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], BookController.prototype, "findAll", null);
 __decorate([
+    (0, swagger_1.ApiQuery)({
+        name: 'category',
+        type: String,
+        required: false,
+    }),
     (0, common_1.Get)('search'),
     openapi.ApiResponse({ status: 200, type: [Object] }),
     __param(0, (0, common_1.Query)('title')),
+    __param(1, (0, common_1.Query)('category')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], BookController.prototype, "search", null);
 __decorate([

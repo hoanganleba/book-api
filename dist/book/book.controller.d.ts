@@ -8,7 +8,7 @@ export declare class BookController {
         _id: any;
     }>;
     findAll(category: string): Promise<import("./interface/book.interface").Book[]>;
-    search(title: string): Promise<import("./interface/book.interface").Book[]>;
+    search(title: string, category: string): Promise<import("./interface/book.interface").Book[]>;
     findOne(id: string): Promise<import("./interface/book.interface").Book>;
     update(id: string, updateBookDto: UpdateBookDto): Promise<import("./interface/book.interface").Book & {
         _id: any;

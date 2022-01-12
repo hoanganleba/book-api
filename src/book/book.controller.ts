@@ -36,9 +36,24 @@ export class BookController {
     return this.bookService.findAll();
   }
 
+  @ApiQuery({
+    name: 'category',
+    type: String,
+    required: false,
+  })
   @Get('search')
-  async search(@Query('title') title: string) {
+  async search(
+    @Query('title') title: string,
+    @Query('category') category: string,
+  ) {
     const result = await this.bookService.findAll();
+    if (category) {
+      return result.filter(
+        (item) =>
+          item.category.includes(category) &&
+          item.title.toLowerCase().indexOf(title.toLowerCase()) > -1,
+      );
+    }
     return result.filter((item) => {
       return item.title.toLowerCase().indexOf(title.toLowerCase()) > -1;
     });
